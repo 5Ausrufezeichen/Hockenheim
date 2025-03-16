@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detektiv-Rätsel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input {
+            display: block;
+            margin: 10px auto;
+            padding: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        #pdf-link {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Detektiv-Rätsel</h1>
+    
+    <label>1. Rätsel</label>
+    <input type="text" id="input1">
+    
+    <label>2. Rätsel</label>
+    <input type="text" id="input2">
+    
+    <label>3. Rätsel</label>
+    <input type="text" id="input3">
+    
+    <label>4. Rätsel</label>
+    <input type="text" id="input4">
+    
+    <label>5. Rätsel</label>
+    <input type="text" id="input5">
+    
+    <button onclick="checkAnswers()">Überprüfen</button>
+    
+    <p id="message"></p>
+    
+    <a id="pdf-link" href="fall.pdf" target="_blank">Hier geht es zum Fall!</a>
+    
+    <script>
+        function checkAnswers() {
+            const answers = ["KATZE", "ECHSE", "PFERD", "AFFE", "2025"];
+            const inputs = [
+                document.getElementById("input1").value.trim().toUpperCase(),
+                document.getElementById("input2").value.trim().toUpperCase(),
+                document.getElementById("input3").value.trim().toUpperCase(),
+                document.getElementById("input4").value.trim().toUpperCase(),
+                document.getElementById("input5").value.trim()
+            ];
+            
+            if (JSON.stringify(inputs) === JSON.stringify(answers)) {
+                document.getElementById("message").textContent = "Herzlichen Glückwunsch! Ihr habt das Rätsel gelöst!";
+                document.getElementById("message").style.color = "green";
+                document.getElementById("pdf-link").style.display = "block";
+            } else {
+                document.getElementById("message").textContent = "Leider falsch. Versucht es nochmal!";
+                document.getElementById("message").style.color = "red";
+                document.getElementById("pdf-link").style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
